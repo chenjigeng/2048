@@ -51,6 +51,7 @@ namespace _2048
             }
         }
         public static SQLiteConnection conn;
+        public static Models.player Player;
         /// <summary>
         /// 在应用程序由最终用户正常启动时进行调用。
         /// 将在启动应用程序以打开特定文件等情况下使用。
@@ -136,88 +137,92 @@ namespace _2048
 
         void Update_Tile()
         {
-            TileContent content = new TileContent()
+            if (Player != null)
             {
-                Visual = new TileVisual()
+                TileContent content = new TileContent()
                 {
-                    Branding = TileBranding.Name,
-                    TileSmall = new TileBinding()
+                    Visual = new TileVisual()
                     {
-                        Content = new TileBindingContentAdaptive()
+                        Branding = TileBranding.Name,
+                        TileSmall = new TileBinding()
                         {
-                            Children =
+                            Content = new TileBindingContentAdaptive()
+                            {
+                                Children =
                             {
                                 new TileText()
                                 {
-                                    Text = "100000000",
+                                    Text = Player.HighestScore + "",
                                     Style = TileTextStyle.Subtitle
                                 },
                                 new TileText()
                                 {
-                                    Text = "100000000",
+                                    Text = Player.HighestScore+"",
                                     Style = TileTextStyle.CaptionSubtle
                                 },
                             },
-                            //BackgroundImage = new TileBackgroundImage()
-                            //{
-                            //Source = new TileImageSource(AllItems.Count > 0 ? Models.TodoItem.ImagePath + AllItems[AllItems.Count - 1].ImageName : Models.TodoItem.ImagePath + "background.jpg"),
-                            //Overlay = 20
-                            //},
-                        }
-                    },
-                    TileMedium = new TileBinding()
-                    {
-                        Content = new TileBindingContentAdaptive()
+                                //BackgroundImage = new TileBackgroundImage()
+                                //{
+                                //Source = new TileImageSource(AllItems.Count > 0 ? Models.TodoItem.ImagePath + AllItems[AllItems.Count - 1].ImageName : Models.TodoItem.ImagePath + "background.jpg"),
+                                //Overlay = 20
+                                //},
+                            }
+                        },
+                        TileMedium = new TileBinding()
                         {
-                            Children =
+                            Content = new TileBindingContentAdaptive()
+                            {
+                                Children =
                             {
                                 new TileText()
                                 {
-                                    Text = "100000000",
+                                    Text = Player.HighestScore+"",
                                     Style = TileTextStyle.Subtitle
                                 },
                                 new TileText()
                                 {
-                                    Text = "100000000",
+                                    Text = Player.HighestScore+"",
                                     Style = TileTextStyle.CaptionSubtle
                                 },
                             },
-                            //BackgroundImage = new TileBackgroundImage()
-                            //{
-                            //Source = new TileImageSource(AllItems.Count > 0 ? Models.TodoItem.ImagePath + AllItems[AllItems.Count - 1].ImageName : Models.TodoItem.ImagePath + "background.jpg"),
-                            //Overlay = 40
-                            // },
-                        }
-                    },
-                    TileWide = new TileBinding()
-                    {
-                        Content = new TileBindingContentAdaptive()
+                                //BackgroundImage = new TileBackgroundImage()
+                                //{
+                                //Source = new TileImageSource(AllItems.Count > 0 ? Models.TodoItem.ImagePath + AllItems[AllItems.Count - 1].ImageName : Models.TodoItem.ImagePath + "background.jpg"),
+                                //Overlay = 40
+                                // },
+                            }
+                        },
+                        TileWide = new TileBinding()
                         {
-                            Children =
+                            Content = new TileBindingContentAdaptive()
+                            {
+                                Children =
                             {
                                 new TileText()
                                 {
-                                    Text = "100000000",
+                                    Text = Player.HighestScore+"",
                                     Style = TileTextStyle.Subtitle
                                 },
                                 new TileText()
                                 {
-                                    Text = "100000000",
+                                    Text = Player.HighestScore+"",
                                     Style = TileTextStyle.CaptionSubtle
                                 }
                             },
-                            //BackgroundImage = new TileBackgroundImage()
-                            //{
-                            //Source = new TileImageSource(AllItems.Count > 0 ? Models.TodoItem.ImagePath + AllItems[AllItems.Count - 1].ImageName : Models.TodoItem.ImagePath + "background.jpg"),
-                            //Overlay = 60
-                            //},
+                                //BackgroundImage = new TileBackgroundImage()
+                                //{
+                                //Source = new TileImageSource(AllItems.Count > 0 ? Models.TodoItem.ImagePath + AllItems[AllItems.Count - 1].ImageName : Models.TodoItem.ImagePath + "background.jpg"),
+                                //Overlay = 60
+                                //},
+                            }
                         }
                     }
-                }
-            };
-            var notifi = new TileNotification(content.GetXml());
-            var updater = TileUpdateManager.CreateTileUpdaterForApplication();
-            updater.Update(notifi);
+
+                };
+                var notifi = new TileNotification(content.GetXml());
+                var updater = TileUpdateManager.CreateTileUpdaterForApplication();
+                updater.Update(notifi);
+            }
         }
 
     }

@@ -54,7 +54,7 @@ namespace _2048
                 {
                     statement.Bind(1, account.Text);
                     statement.Bind(2, password.Text);
-                    while (statement.Step() == SQLiteResult.ROW)
+                    if (statement.Step() == SQLiteResult.ROW)
                     {
                         try
                         {
@@ -62,14 +62,18 @@ namespace _2048
                             var password = (string)statement[2];
                             var account = (string)statement[3];
                             long highestScore = (long)statement[4];
-                            Models.player Player = new Models.player(username, password, account, (string)statement[5], highestScore);
+                            App.Player = new Models.player(username, password, account, (string)statement[5], highestScore);
                             //若登录成功
-                            Frame.Navigate(typeof(EnterPage), Player);
+                            Frame.Navigate(typeof(EnterPage), App.Player);
                         }
                         catch (Exception err)
                         {
 
                         }
+                    }
+                    else
+                    {
+                        var p = new MessageDialog("请输入正确的账号和密码").ShowAsync();
                     }
                 }
             }

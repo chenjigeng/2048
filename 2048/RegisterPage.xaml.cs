@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SQLitePCL;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -96,19 +97,30 @@ namespace _2048
                 var db = App.conn;
                 try
                 {
-                    using (var MyItem = db.Prepare("INSERT INTO Players (Username, Password, Account, Birthday, HighestScore) VALUES (?,?,?,?, ?)"))
+                    using (var Item = db.Prepare("SELECT * FROM Players WHERE Username = ? OR Account = ?"))
                     {
-                        MyItem.Bind(1, name_re.Text);
-                        MyItem.Bind(2, password_re.Text);
-                        MyItem.Bind(3, account_re.Text);
-                        MyItem.Bind(4, birthdate.Date.ToString("s"));
-                        MyItem.Bind(5, 0);
-                        MyItem.Step();
-
+                       Item.Bind(1, name_re.Text);
+                       Item.Bind(2, account_re.Text);
+                       if (Item.Step() == SQLiteResult.ROW)
+                        {
+                            var p = new MessageDialog("账号或者用户名重复").ShowAsync();
+                        }
+                       else
+                        {
+                            using (var MyItem = db.Prepare("INSERT INTO Players (Username, Password, Account, Birthday, HighestScore) VALUES (?,?,?,?, ?)"))
+                            {
+                                MyItem.Bind(1, name_re.Text);
+                                MyItem.Bind(2, password_re.Text);
+                                MyItem.Bind(3, account_re.Text);
+                                MyItem.Bind(4, birthdate.Date.ToString("s"));
+                                MyItem.Bind(5, 0);
+                                MyItem.Step();
+                            }
+                            App.Player = new Models.player(name_re.Text, password_re.Text, account_re.Text, birthdate.Date.ToString("s"));
+                            var mes = new MessageDialog("regist success").ShowAsync();
+                            Frame.Navigate(typeof(EnterPage), App.Player);
+                        }
                     }
-                    Models.player play = new Models.player(name_re.Text, password_re.Text, account_re.Text, birthdate.Date.ToString("s"));
-                    var mes = new MessageDialog("regist success").ShowAsync();
-                    Frame.Navigate(typeof(EnterPage), play);
                 }
                 catch (Exception ex)
                 {

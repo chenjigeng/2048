@@ -697,3 +697,6 @@ C:\Users\Administrator\2048\2048\obj\x86\Debug\qualifiers.txt.intermediate
 C:\Users\Administrator\2048\2048\obj\x86\Debug\MultipleQualifiersPerDimensionFound.txt
 C:\Users\Administrator\2048\2048\obj\x86\Debug\SQLitePCL.Ext.pri.xml
 C:\Users\Administrator\2048\2048\obj\x86\Debug\ProjectArchitectures.txt
+C:\Users\Administrator\2048\2048\bin\x86\Debug\NotificationsExtensions.winmd
+C:\Users\Administrator\2048\2048\obj\x86\Debug\2048.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\2048\2048\obj\x86\Debug\NotificationsExtensions.pri.xml

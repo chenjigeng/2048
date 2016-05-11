@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace _2048.Models
 {
-    class player
+    public class player
     {
         public int Id;
         public string Username;
