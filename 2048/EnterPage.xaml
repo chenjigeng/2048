@@ -1,0 +1,28 @@
+﻿<Page
+    x:Class="_2048.EnterPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:_2048"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid x:Name="All">
+        <Grid.Background>
+            <ImageBrush ImageSource="Assets/2.jpg" Stretch="UniformToFill"></ImageBrush>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+
+        </Grid.RowDefinitions>
+
+        <TextBlock x:Name="title_2048" Grid.Row="0"  Text="2048"  HorizontalAlignment="Center" Style="{StaticResource HeaderTextBlockStyle}"/>
+        <Button x:Name="game_button" Grid.Row="1" Content="开始游戏" Height="65" Width="200" HorizontalAlignment="Center" VerticalAlignment="Top" Style="{StaticResource ButtonStyle}" Click="Game_Click"/>
+        <Button x:Name="rule_button" Grid.Row="2" Content="游戏说明" Height="65" Width="200" HorizontalAlignment="Center" VerticalAlignment="Top" Style="{StaticResource ButtonStyle}" Click="Rule_Click"/>
+        <Button x:Name="grade_button" Grid.Row="3" Content="排行榜" Height="65" Width="200" HorizontalAlignment="Center" VerticalAlignment="Top" Style="{StaticResource ButtonStyle}" Click="Grade_Click"/>
+    </Grid>
+</Page>
