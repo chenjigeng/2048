@@ -232,6 +232,14 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
+      "NotificationsExtensions.Win10/14295.0.1": {
+        "compile": {
+          "lib/uap10.0/NotificationsExtensions.winmd": {}
+        },
+        "runtime": {
+          "lib/uap10.0/NotificationsExtensions.winmd": {}
+        }
+      },
       "SQLitePCL/3.8.7.2": {
         "compile": {
           "lib/netcore451/SQLitePCL.dll": {}
@@ -1847,6 +1855,14 @@
         },
         "runtime": {
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
+        }
+      },
+      "NotificationsExtensions.Win10/14295.0.1": {
+        "compile": {
+          "lib/uap10.0/NotificationsExtensions.winmd": {}
+        },
+        "runtime": {
+          "lib/uap10.0/NotificationsExtensions.winmd": {}
         }
       },
       "SQLitePCL/3.8.7.2": {
@@ -3497,6 +3513,14 @@
         },
         "runtime": {
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
+        }
+      },
+      "NotificationsExtensions.Win10/14295.0.1": {
+        "compile": {
+          "lib/uap10.0/NotificationsExtensions.winmd": {}
+        },
+        "runtime": {
+          "lib/uap10.0/NotificationsExtensions.winmd": {}
         }
       },
       "SQLitePCL/3.8.7.2": {
@@ -5154,6 +5178,14 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
+      "NotificationsExtensions.Win10/14295.0.1": {
+        "compile": {
+          "lib/uap10.0/NotificationsExtensions.winmd": {}
+        },
+        "runtime": {
+          "lib/uap10.0/NotificationsExtensions.winmd": {}
+        }
+      },
       "SQLitePCL/3.8.7.2": {
         "compile": {
           "lib/netcore451/SQLitePCL.dll": {}
@@ -6802,6 +6834,14 @@
         },
         "runtime": {
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
+        }
+      },
+      "NotificationsExtensions.Win10/14295.0.1": {
+        "compile": {
+          "lib/uap10.0/NotificationsExtensions.winmd": {}
+        },
+        "runtime": {
+          "lib/uap10.0/NotificationsExtensions.winmd": {}
         }
       },
       "SQLitePCL/3.8.7.2": {
@@ -8459,6 +8499,14 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
+      "NotificationsExtensions.Win10/14295.0.1": {
+        "compile": {
+          "lib/uap10.0/NotificationsExtensions.winmd": {}
+        },
+        "runtime": {
+          "lib/uap10.0/NotificationsExtensions.winmd": {}
+        }
+      },
       "SQLitePCL/3.8.7.2": {
         "compile": {
           "lib/netcore451/SQLitePCL.dll": {}
@@ -10107,6 +10155,14 @@
         },
         "runtime": {
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
+        }
+      },
+      "NotificationsExtensions.Win10/14295.0.1": {
+        "compile": {
+          "lib/uap10.0/NotificationsExtensions.winmd": {}
+        },
+        "runtime": {
+          "lib/uap10.0/NotificationsExtensions.winmd": {}
         }
       },
       "SQLitePCL/3.8.7.2": {
@@ -12187,6 +12243,27 @@
         "ref/net46/Microsoft.Win32.Primitives.dll",
         "ref/xamarinios10/_._",
         "ref/xamarinmac20/_._"
+      ]
+    },
+    "NotificationsExtensions.Win10/14295.0.1": {
+      "sha512": "XFRE87hwcl7xIqoYQD+bpEZGCb7jqFOJK5YpcPKVD/pcMa7KajLvh7rUD6of1gnxM/iGVZg4D7LczeMH2D58aQ==",
+      "type": "Package",
+      "files": [
+        "[Content_Types].xml",
+        "_rels/.rels",
+        "lib/dotnet/NotificationsExtensions.Win10.NETCore.dll",
+        "lib/dotnet/NotificationsExtensions.Win10.NETCore.pdb",
+        "lib/dotnet/NotificationsExtensions.Win10.NETCore.XML",
+        "lib/portable-net45+sl50+win+wpa81+wp80/NotificationsExtensions.Win10.Portable.dll",
+        "lib/portable-net45+sl50+win+wpa81+wp80/NotificationsExtensions.Win10.Portable.pdb",
+        "lib/portable-net45+sl50+win+wpa81+wp80/NotificationsExtensions.Win10.Portable.XML",
+        "lib/uap10.0/NotificationsExtensions.pdb",
+        "lib/uap10.0/NotificationsExtensions.pri",
+        "lib/uap10.0/NotificationsExtensions.winmd",
+        "lib/uap10.0/NotificationsExtensions.winmd.xml",
+        "lib/uap10.0/NotificationsExtensions.xml",
+        "NotificationsExtensions.Win10.nuspec",
+        "package/services/metadata/core-properties/47fae3354a464f9fb16abe5a4b03a40d.psmdcp"
       ]
     },
     "SQLitePCL/3.8.7.2": {
@@ -14969,6 +15046,7 @@
       "Microsoft.ApplicationInsights.PersistenceChannel >= 1.0.0",
       "Microsoft.ApplicationInsights.WindowsApps >= 1.0.0",
       "Microsoft.NETCore.UniversalWindowsPlatform >= 5.0.0",
+      "NotificationsExtensions.Win10 >= 14295.0.1",
       "SQLitePCL >= 3.8.7.2"
     ],
     "UAP,Version=v10.0": []

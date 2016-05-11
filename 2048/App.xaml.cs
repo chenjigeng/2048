@@ -15,6 +15,9 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using NotificationsExtensions.Tiles;
+using Windows.UI.Notifications;
+
 namespace _2048
 {
     /// <summary>
@@ -115,6 +118,7 @@ namespace _2048
         private void OnSuspending(object sender, SuspendingEventArgs e)
         {
             var deferral = e.SuspendingOperation.GetDeferral();
+            Update_Tile();
             //TODO: 保存应用程序状态并停止任何后台活动
             deferral.Complete();
         }
@@ -129,5 +133,92 @@ namespace _2048
                 rootFrame.GoBack();
             }
         }
+
+        void Update_Tile()
+        {
+            TileContent content = new TileContent()
+            {
+                Visual = new TileVisual()
+                {
+                    Branding = TileBranding.Name,
+                    TileSmall = new TileBinding()
+                    {
+                        Content = new TileBindingContentAdaptive()
+                        {
+                            Children =
+                            {
+                                new TileText()
+                                {
+                                    Text = "100000000",
+                                    Style = TileTextStyle.Subtitle
+                                },
+                                new TileText()
+                                {
+                                    Text = "100000000",
+                                    Style = TileTextStyle.CaptionSubtle
+                                },
+                            },
+                            //BackgroundImage = new TileBackgroundImage()
+                            //{
+                            //Source = new TileImageSource(AllItems.Count > 0 ? Models.TodoItem.ImagePath + AllItems[AllItems.Count - 1].ImageName : Models.TodoItem.ImagePath + "background.jpg"),
+                            //Overlay = 20
+                            //},
+                        }
+                    },
+                    TileMedium = new TileBinding()
+                    {
+                        Content = new TileBindingContentAdaptive()
+                        {
+                            Children =
+                            {
+                                new TileText()
+                                {
+                                    Text = "100000000",
+                                    Style = TileTextStyle.Subtitle
+                                },
+                                new TileText()
+                                {
+                                    Text = "100000000",
+                                    Style = TileTextStyle.CaptionSubtle
+                                },
+                            },
+                            //BackgroundImage = new TileBackgroundImage()
+                            //{
+                            //Source = new TileImageSource(AllItems.Count > 0 ? Models.TodoItem.ImagePath + AllItems[AllItems.Count - 1].ImageName : Models.TodoItem.ImagePath + "background.jpg"),
+                            //Overlay = 40
+                            // },
+                        }
+                    },
+                    TileWide = new TileBinding()
+                    {
+                        Content = new TileBindingContentAdaptive()
+                        {
+                            Children =
+                            {
+                                new TileText()
+                                {
+                                    Text = "100000000",
+                                    Style = TileTextStyle.Subtitle
+                                },
+                                new TileText()
+                                {
+                                    Text = "100000000",
+                                    Style = TileTextStyle.CaptionSubtle
+                                }
+                            },
+                            //BackgroundImage = new TileBackgroundImage()
+                            //{
+                            //Source = new TileImageSource(AllItems.Count > 0 ? Models.TodoItem.ImagePath + AllItems[AllItems.Count - 1].ImageName : Models.TodoItem.ImagePath + "background.jpg"),
+                            //Overlay = 60
+                            //},
+                        }
+                    }
+                }
+            };
+            var notifi = new TileNotification(content.GetXml());
+            var updater = TileUpdateManager.CreateTileUpdaterForApplication();
+            updater.Update(notifi);
+        }
+
     }
 }
