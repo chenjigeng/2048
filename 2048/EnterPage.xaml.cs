@@ -55,7 +55,7 @@ namespace _2048
         private void Rule_Click(object sender, RoutedEventArgs e)
         {
             //转到游戏说明界面
-            Frame.Navigate(typeof(RulePage), Player );
+            Frame.Navigate(typeof(RulePage), Player);
         }
 
         private void Grade_Click(object sender, RoutedEventArgs e)

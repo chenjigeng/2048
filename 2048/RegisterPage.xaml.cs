@@ -117,7 +117,7 @@ namespace _2048
                                 MyItem.Step();
                             }
                             App.Player = new Models.player(name_re.Text, password_re.Text, account_re.Text, birthdate.Date.ToString("s"));
-                            var mes = new MessageDialog("regist success").ShowAsync();
+                            var mes = new MessageDialog("注册成功！").ShowAsync();
                             Frame.Navigate(typeof(EnterPage), App.Player);
                         }
                     }

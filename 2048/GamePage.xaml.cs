@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SQLitePCL;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
@@ -8,6 +9,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using System.ServiceModel.Channels;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI;
 using Windows.UI.Core;
 using Windows.UI.Input;
 using Windows.UI.Popups;
@@ -38,7 +40,26 @@ namespace _2048
                 }
             randomProduce();
             randomProduce();
+            buttons.Add(b11);
+            buttons.Add(b12);
+            buttons.Add(b13);
+            buttons.Add(b14);
+            buttons.Add(b21);
+            buttons.Add(b22);
+            buttons.Add(b23);
+            buttons.Add(b24);
+            buttons.Add(b31);
+            buttons.Add(b32);
+            buttons.Add(b33);
+            buttons.Add(b34);
+            buttons.Add(b41);
+            buttons.Add(b42);
+            buttons.Add(b43);
+            buttons.Add(b44);
+            updateranking();
         }
+        string[] rankname = new string[5];
+        string[] ranknum = new string[5];
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -47,7 +68,7 @@ namespace _2048
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        enum DIRECTION { LEFT, RIGHT, UP, DOWN };
+        enum DIRECTION { LEFT, RIGHT, UP, DOWN, INVALID };
         DIRECTION direction;
         enum TYPE { t_0000, t_0001, t_0010, t_0011, t_0100, t_0101, t_0110, t_0111, t_1000, t_1001, t_1010, t_1011, t_1100, t_1101, t_1110, t_1111, t_null };
         TYPE[] types = new TYPE[4];
@@ -70,7 +91,29 @@ namespace _2048
         PointerPoint press;
         PointerPoint release;
         bool isMoved = true;
+        private List<Button> buttons = new List<Button>();
 
+        private void updateranking()
+        {
+            int i = 0;
+            var db = App.conn;
+            try
+            {
+                using (var statement = db.Prepare("SELECT * FROM Players ORDER BY HighestScore DESC LIMIT 5"))
+                {
+                    while (statement.Step() == SQLiteResult.ROW)
+                    {
+                        rankname[i] = ((string)statement[1]);
+                        ranknum[i] = ((long)statement[4]) + "";
+                        i++;
+                    }
+                }
+            }
+            catch (Exception exe)
+            {
+
+            }
+        }
         private TYPE str2type(string t)
         {
             switch (t)
@@ -127,6 +170,7 @@ namespace _2048
             Button obj = (Button)FindName("b" + pos);
             obj.Content = 2;
             scores += (int)obj.Content;
+            obj.Background = new SolidColorBrush(Colors.PaleTurquoise);
         }
 
         public void setButtonStyle(Button button, int buttonContent)
@@ -135,6 +179,57 @@ namespace _2048
             {
                 case 2:
                     {
+                        button.Background = new SolidColorBrush(Colors.PaleTurquoise);
+                        break;
+                    }
+                case 4:
+                    {
+                        button.Background = new SolidColorBrush(Colors.PowderBlue);
+                        break;
+                    }
+                case 8:
+                    {
+                        button.Background = new SolidColorBrush(Colors.PaleGoldenrod);
+                        break;
+                    }
+                case 16:
+                    {
+                        button.Background = new SolidColorBrush(Colors.Wheat);
+                        break;
+                    }
+                case 32:
+                    {
+                        button.Background = new SolidColorBrush(Colors.Pink);
+                        break;
+                    }
+                case 64:
+                    {
+                        button.Background = new SolidColorBrush(Colors.HotPink);
+                        break;
+                    }
+                case 128:
+                    {
+                        button.Background = new SolidColorBrush(Colors.Plum);
+                        break;
+                    }
+                case 256:
+                    {
+                        button.Background = new SolidColorBrush(Colors.Violet);
+                        break;
+                    }
+                case 512:
+                    {
+                        button.Background = new SolidColorBrush(Colors.SpringGreen);
+                        break;
+                    }
+                case 1048:
+                    {
+                        button.Background = new SolidColorBrush(Colors.LawnGreen);
+                        break;
+                    }
+                case 2048:
+                    {
+                        button.Background = new SolidColorBrush(Colors.Yellow);
                         break;
                     }
             }
@@ -287,9 +382,19 @@ namespace _2048
             else
                 occupies.Add(44);
 
+            foreach (var item in occupies)
+            {
+                var b = (Button)FindName("b" + item);
+                setButtonStyle(b, (int)b.Content);
+            }
+            foreach (var item in remains)
+            {
+                var b = (Button)FindName("b" + item);
+                b.Background = new SolidColorBrush(Colors.White);
+            }
         }
 
-        private void updateOnce()
+        private bool updateOnce()
         {
             Button b_1 = null, b_2 = null, b_3 = null, b_4 = null;
             int movedCount = 0;
@@ -316,13 +421,15 @@ namespace _2048
                     b_3 = (Button)FindName("b" + (i + 30));
                     b_4 = (Button)FindName("b" + (i + 40));
                 }
-                else
+                else if (direction == DIRECTION.DOWN)
                 {
                     b_1 = (Button)FindName("b" + (i + 40));
                     b_2 = (Button)FindName("b" + (i + 30));
                     b_3 = (Button)FindName("b" + (i + 20));
                     b_4 = (Button)FindName("b" + (i + 10));
                 }
+                else
+                    return false;
                 #region
                 switch (types[i - 1])
                 {
@@ -577,6 +684,7 @@ namespace _2048
             }
             if (movedCount == 4)
                 isMoved = false;
+            return true;
         }
 
         private bool gameOver()
@@ -616,6 +724,18 @@ namespace _2048
             return true;
         }
 
+        private void reset()
+        {
+            occupies.Clear();
+            remains.Clear();
+
+            foreach (var button in buttons)
+            {
+                occupies.Add(Convert.ToInt32(button.Name[1] + button.Name[2]));
+                button.Content = null;
+            }
+        }
+
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             Player = (Models.player)e.Parameter;
@@ -631,6 +751,7 @@ namespace _2048
                     AppViewBackButtonVisibility.Collapsed;
             }
         }
+
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
             Player.CurrentScore = scores;
@@ -639,7 +760,12 @@ namespace _2048
                 Player.HighestScore = scores;
                 Player.update();
             }
+            reset();
+            Window.Current.CoreWindow.KeyDown -= CoreWindow_KeyDown;
+            Window.Current.CoreWindow.PointerPressed -= CoreWindow_PointerPressed;
+            Window.Current.CoreWindow.PointerReleased -= CoreWindow_PointerReleased;
         }
+
         //private void mousePressed(object sender, PointerRoutedEventArgs e)
         //{
         //    Pointer currentPoint = e.Pointer;
@@ -674,12 +800,13 @@ namespace _2048
 
         private void update()
         {
-            detectTypes();
-            updateOnce();
-            updateRO();
-            randomProduce();
             if (gameOver())
                 Frame.Navigate(typeof(GradePage), Player);
+            detectTypes();
+            bool updateSuccess = updateOnce();
+            updateRO();
+            if (updateSuccess)
+                randomProduce();
         }
 
         private void Grid_Loaded(object sender, RoutedEventArgs e)
@@ -718,17 +845,21 @@ namespace _2048
             double dy = release.Position.Y - press.Position.Y;
             if (Math.Abs(dx) > Math.Abs(dy))
             {
-                if (dx > 0)
+                if (dx > 5)
                     direction = DIRECTION.RIGHT;
-                else
+                else if (dx < -5)
                     direction = DIRECTION.LEFT;
+                else
+                    direction = DIRECTION.INVALID;
             }
             else
             {
-                if (dy < 0)
+                if (dy < -5)
                     direction = DIRECTION.UP;
-                else
+                else if (dy > 5)
                     direction = DIRECTION.DOWN;
+                else
+                    direction = DIRECTION.INVALID;
             }
             update();
         }

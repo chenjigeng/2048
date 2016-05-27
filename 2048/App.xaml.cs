@@ -161,11 +161,11 @@ namespace _2048
                                     Style = TileTextStyle.CaptionSubtle
                                 },
                             },
-                                //BackgroundImage = new TileBackgroundImage()
-                                //{
-                                //Source = new TileImageSource(AllItems.Count > 0 ? Models.TodoItem.ImagePath + AllItems[AllItems.Count - 1].ImageName : Models.TodoItem.ImagePath + "background.jpg"),
-                                //Overlay = 20
-                                //},
+                                BackgroundImage = new TileBackgroundImage()
+                                {
+                                    Source = new TileImageSource("Assets/1.jpg"),
+                                    Overlay = 20
+                                },
                             }
                         },
                         TileMedium = new TileBinding()
@@ -185,11 +185,11 @@ namespace _2048
                                     Style = TileTextStyle.CaptionSubtle
                                 },
                             },
-                                //BackgroundImage = new TileBackgroundImage()
-                                //{
-                                //Source = new TileImageSource(AllItems.Count > 0 ? Models.TodoItem.ImagePath + AllItems[AllItems.Count - 1].ImageName : Models.TodoItem.ImagePath + "background.jpg"),
-                                //Overlay = 40
-                                // },
+                                BackgroundImage = new TileBackgroundImage()
+                                {
+                                    Source = new TileImageSource("Assets/1.jpg"),
+                                    Overlay = 40
+                                },
                             }
                         },
                         TileWide = new TileBinding()
@@ -209,11 +209,11 @@ namespace _2048
                                     Style = TileTextStyle.CaptionSubtle
                                 }
                             },
-                                //BackgroundImage = new TileBackgroundImage()
-                                //{
-                                //Source = new TileImageSource(AllItems.Count > 0 ? Models.TodoItem.ImagePath + AllItems[AllItems.Count - 1].ImageName : Models.TodoItem.ImagePath + "background.jpg"),
-                                //Overlay = 60
-                                //},
+                                BackgroundImage = new TileBackgroundImage()
+                                {
+                                    Source = new TileImageSource("Assets/1.jpg"),
+                                    Overlay = 60
+                                },
                             }
                         }
                     }

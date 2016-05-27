@@ -21,18 +21,70 @@
             <RowDefinition Height=" *"/>
             <RowDefinition Height=" 250"/>
         </Grid.RowDefinitions>
+
+        
         <TextBlock x:Name="RuleText" Grid.Row="0" Text="排行榜"  HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource TextBlockStyle3}"/>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="150"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <TextBlock Text="名次" Grid.Column="0" Style="{StaticResource TextBlockStyle}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            <TextBlock Text="头像" Grid.Column="1" Style="{StaticResource TextBlockStyle}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            <TextBlock Text="用户名" Grid.Column="2" Style="{StaticResource TextBlockStyle}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            <TextBlock Text="分数" Grid.Column="3" Style="{StaticResource TextBlockStyle}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Text="用户名" Grid.Column="1" Style="{StaticResource TextBlockStyle}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Text="分数" Grid.Column="2" Style="{StaticResource TextBlockStyle}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </Grid>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="{x:Bind ranknum[0]}" Grid.Column="0" Style="{StaticResource TextBlockStyle}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Text="{x:Bind rankname[0]}" Grid.Column="1" Style="{StaticResource TextBlockStyle}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Text="{x:Bind rankscore[0]}" Grid.Column="2" Style="{StaticResource TextBlockStyle}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </Grid>
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+
+            <TextBlock Text="{x:Bind ranknum[1]}" Grid.Column="0" Style="{StaticResource TextBlockStyle}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Text="{x:Bind rankname[1]}" Grid.Column="1" Style="{StaticResource TextBlockStyle}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Text="{x:Bind rankscore[1]}" Grid.Column="2" Style="{StaticResource TextBlockStyle}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </Grid>
+        <Grid Grid.Row="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="{x:Bind ranknum[2]}" Grid.Column="0" Style="{StaticResource TextBlockStyle}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Text="{x:Bind rankname[2]}" Grid.Column="1" Style="{StaticResource TextBlockStyle}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Text="{x:Bind rankscore[2]}" Grid.Column="2" Style="{StaticResource TextBlockStyle}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </Grid>
+        <Grid Grid.Row="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="{x:Bind ranknum[3]}" Grid.Column="0" Style="{StaticResource TextBlockStyle}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Text="{x:Bind rankname[3]}" Grid.Column="1" Style="{StaticResource TextBlockStyle}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Text="{x:Bind rankscore[3]}" Grid.Column="2" Style="{StaticResource TextBlockStyle}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </Grid>
+        <Grid Grid.Row="6">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="{x:Bind ranknum[4]}" Grid.Column="0" Style="{StaticResource TextBlockStyle}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Text="{x:Bind rankname[4]}" Grid.Column="1" Style="{StaticResource TextBlockStyle}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Text="{x:Bind rankscore[4]}" Grid.Column="2" Style="{StaticResource TextBlockStyle}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         </Grid>
         <Button x:Name="StartButton" Grid.Row="7" Grid.Column="2" Content="开始游戏" Height="45" Width="150" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource ButtonStyle}" Click="StartButton_Click"/>
     </Grid>

@@ -23,6 +23,7 @@ namespace _2048
     /// </summary>
     public sealed partial class RulePage : Page
     {
+        
         public RulePage()
         {
             this.InitializeComponent();
@@ -31,8 +32,18 @@ namespace _2048
             viewTitleBar.ButtonBackgroundColor = Windows.UI.Colors.CornflowerBlue;
         }
 
+        Models.player Player;
+
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            try
+            {
+                Player = (Models.player)e.Parameter;
+            }
+            catch
+            {
+
+            }
             Frame rootFrame = Window.Current.Content as Frame;
             if (rootFrame.CanGoBack)
             {
@@ -48,7 +59,7 @@ namespace _2048
 
         private void start_button_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(GamePage), "");
+            Frame.Navigate(typeof(GamePage), Player);
         }
     }
 }
